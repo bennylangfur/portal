@@ -1,1 +1,565 @@
-<h1>Portal Coming Soon</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Benny's Labyrinth — five immersive musical worlds."
+  >
+
+  <title>Benny's Labyrinth</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/player.css">
+</head>
+
+<body class="theme-rabbit">
+
+  <!-- Background -->
+  <div class="background-world" aria-hidden="true">
+    <div class="stars stars-small"></div>
+    <div class="stars stars-medium"></div>
+    <div class="stars stars-large"></div>
+
+    <div class="world-mist"></div>
+
+    <span class="floating-symbol symbol-one">♥</span>
+    <span class="floating-symbol symbol-two">♠</span>
+    <span class="floating-symbol symbol-three">♦</span>
+    <span class="floating-symbol symbol-four">♣</span>
+
+    <span class="floating-clock clock-one">◷</span>
+    <span class="floating-clock clock-two">◴</span>
+  </div>
+
+
+  <!-- Opening screen -->
+  <section id="introScreen" class="intro-screen">
+
+    <div class="intro-frame">
+
+      <p class="intro-symbols">
+        ♠ &nbsp; ♥ &nbsp; ♣ &nbsp; ♦
+      </p>
+
+      <h1 class="intro-title">
+        Benny's Labyrinth
+      </h1>
+
+      <p class="intro-subtitle">
+        Step inside...
+      </p>
+
+      <button
+        id="enterButton"
+        class="enter-button"
+        type="button"
+      >
+        Enter Rabbit Hole
+      </button>
+
+      <p class="intro-instruction">
+        Music begins when you enter
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- Main website -->
+  <main id="mainSite" class="main-site">
+
+    <header class="site-header">
+
+      <p class="site-eyebrow">
+        Five musical worlds
+      </p>
+
+      <h1 class="site-title">
+        Benny's Labyrinth
+      </h1>
+
+      <p class="site-description">
+        Choose a portal and follow the music.
+      </p>
+
+    </header>
+
+
+    <!-- Musical worlds -->
+    <section
+      class="world-gallery"
+      aria-label="Musical worlds"
+    >
+
+      <!-- Rabbit Hole Orchestra -->
+      <article class="world-card rabbit-card active">
+
+        <button
+          class="world-portal"
+          type="button"
+          data-band="rabbit"
+          aria-label="Enter Rabbit Hole Orchestra"
+        >
+
+          <span class="portal-frame">
+
+            <img
+              class="world-image"
+              src="assets/covers/rabbithole.jpg"
+              alt="Rabbit Hole Orchestra artwork"
+            >
+
+            <span class="portal-overlay"></span>
+
+            <span class="world-icon" aria-hidden="true">
+              🐇
+            </span>
+
+          </span>
+
+        </button>
+
+        <div class="world-info">
+
+          <h2 class="world-name">
+            Rabbit Hole Orchestra
+          </h2>
+
+          <button
+            class="enter-world-button"
+            type="button"
+            data-band="rabbit"
+          >
+            Enter Rabbit Hole
+          </button>
+
+          <p class="world-description">
+            Psychedelic cinematic rock band
+          </p>
+
+          <p class="world-location">
+            Oakland, California
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- Morph Dwarf -->
+      <article class="world-card morph-card">
+
+        <button
+          class="world-portal"
+          type="button"
+          data-band="morph"
+          aria-label="Enter Morph Dwarf"
+        >
+
+          <span class="portal-frame">
+
+            <img
+              class="world-image"
+              src="assets/covers/morphdwarf.jpg"
+              alt="Morph Dwarf artwork"
+            >
+
+            <span class="portal-overlay"></span>
+
+            <span class="world-icon" aria-hidden="true">
+              ⚙️
+            </span>
+
+          </span>
+
+        </button>
+
+        <div class="world-info">
+
+          <h2 class="world-name">
+            Morph Dwarf
+          </h2>
+
+          <button
+            class="enter-world-button"
+            type="button"
+            data-band="morph"
+          >
+            Enter Underworld
+          </button>
+
+          <p class="world-description">
+            Astral orchestral 7-piece rock act
+          </p>
+
+          <p class="world-location">
+            San Francisco, California
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- Forgotten Kingdoms -->
+      <article class="world-card forgotten-card">
+
+        <button
+          class="world-portal"
+          type="button"
+          data-band="forgotten"
+          aria-label="Enter Forgotten Kingdoms"
+        >
+
+          <span class="portal-frame">
+
+            <img
+              class="world-image"
+              src="assets/covers/forgottenkingdoms.jpg"
+              alt="Forgotten Kingdoms artwork"
+            >
+
+            <span class="portal-overlay"></span>
+
+            <span class="world-icon" aria-hidden="true">
+              🏰
+            </span>
+
+          </span>
+
+        </button>
+
+        <div class="world-info">
+
+          <h2 class="world-name">
+            Forgotten Kingdoms
+          </h2>
+
+          <button
+            class="enter-world-button"
+            type="button"
+            data-band="forgotten"
+          >
+            Enter Kingdom
+          </button>
+
+          <p class="world-description">
+            My journeys on the road in the USA
+          </p>
+
+          <p class="world-location">
+            2007–2012
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- EarthJam -->
+      <article class="world-card earth-card">
+
+        <button
+          class="world-portal"
+          type="button"
+          data-band="earth"
+          aria-label="Enter EarthJam"
+        >
+
+          <span class="portal-frame">
+
+            <img
+              class="world-image"
+              src="assets/covers/earthjam.jpg"
+              alt="EarthJam artwork"
+            >
+
+            <span class="portal-overlay"></span>
+
+            <span class="world-icon" aria-hidden="true">
+              🌿
+            </span>
+
+          </span>
+
+        </button>
+
+        <div class="world-info">
+
+          <h2 class="world-name">
+            EarthJam
+          </h2>
+
+          <button
+            class="enter-world-button"
+            type="button"
+            data-band="earth"
+          >
+            Enter Ceremony
+          </button>
+
+          <p class="world-description">
+            Tribal techno ceremonies
+          </p>
+
+          <p class="world-location">
+            Sarkányszív, Hungary
+          </p>
+
+          <p class="world-extra">
+            Space rock live concerts from our European tour
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- Kaleidoscope Karavan -->
+      <article class="world-card kaleidoscope-card">
+
+        <button
+          class="world-portal"
+          type="button"
+          data-band="kaleidoscope"
+          aria-label="Enter Kaleidoscope Karavan"
+        >
+
+          <span class="portal-frame">
+
+            <img
+              class="world-image"
+              src="assets/covers/kaleidoscope.jpg"
+              alt="Kaleidoscope Karavan artwork"
+            >
+
+            <span class="portal-overlay"></span>
+
+            <span class="world-icon" aria-hidden="true">
+              ☕
+            </span>
+
+          </span>
+
+        </button>
+
+        <div class="world-info">
+
+          <h2 class="world-name">
+            Kaleidoscope Karavan
+          </h2>
+
+          <button
+            class="enter-world-button"
+            type="button"
+            data-band="kaleidoscope"
+          >
+            Enter Temple
+          </button>
+
+          <p class="world-description">
+            Weekly sound journeys featuring a myriad of musicians
+          </p>
+
+          <p class="world-location">
+            Recorded at Seeds of Dreams
+          </p>
+
+          <p class="world-extra">
+            Koh Phangan, Thailand
+          </p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <!-- Permanent bottom player -->
+  <aside
+    id="musicPlayer"
+    class="music-player"
+    aria-label="Music player"
+  >
+
+    <div class="player-album">
+
+      <img
+        id="playerCover"
+        class="player-cover"
+        src="assets/covers/rabbithole.jpg"
+        alt="Current album cover"
+      >
+
+      <div class="player-text">
+
+        <span id="playerBand" class="player-band">
+          Rabbit Hole Orchestra
+        </span>
+
+        <span id="playerTrack" class="player-track">
+          Choose a track
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="player-controls-area">
+
+      <div class="player-buttons">
+
+        <button
+          id="previousButton"
+          class="player-button"
+          type="button"
+          aria-label="Previous track"
+        >
+          ⏮
+        </button>
+
+        <button
+          id="playButton"
+          class="player-button play-button"
+          type="button"
+          aria-label="Play"
+        >
+          ▶
+        </button>
+
+        <button
+          id="nextButton"
+          class="player-button"
+          type="button"
+          aria-label="Next track"
+        >
+          ⏭
+        </button>
+
+      </div>
+
+
+      <div class="progress-row">
+
+        <span id="currentTime" class="time">
+          0:00
+        </span>
+
+        <input
+          id="progressBar"
+          class="progress-bar"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          step="0.1"
+          aria-label="Track progress"
+        >
+
+        <span id="duration" class="time">
+          0:00
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="player-actions">
+
+      <button
+        id="playlistButton"
+        class="playlist-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="playlistPanel"
+      >
+        Playlist
+      </button>
+
+      <a
+        id="downloadButton"
+        class="download-button"
+        href="#"
+        download
+      >
+        Download
+      </a>
+
+    </div>
+
+  </aside>
+
+
+  <!-- Playlist drawer -->
+  <section
+    id="playlistPanel"
+    class="playlist-panel"
+    aria-label="Playlist"
+  >
+
+    <div class="playlist-header">
+
+      <div>
+
+        <p class="playlist-label">
+          Now exploring
+        </p>
+
+        <h2 id="playlistTitle">
+          Rabbit Hole Orchestra
+        </h2>
+
+      </div>
+
+      <button
+        id="closePlaylistButton"
+        class="close-playlist"
+        type="button"
+        aria-label="Close playlist"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="trackList" class="track-list">
+
+      <p class="empty-playlist">
+        Tracks will appear here.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <button
+    id="playlistBackdrop"
+    class="playlist-backdrop"
+    type="button"
+    aria-label="Close playlist"
+  ></button>
+
+
+  <audio id="audioPlayer" preload="metadata"></audio>
+
+  <script src="js/player.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
