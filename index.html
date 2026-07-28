@@ -7,1494 +7,226 @@
   <title>Benny Langfur Music</title>
   <meta name="description" content="Five musical worlds by Benny Langfur.">
 
-  <style>
-    :root {
-      --player-height: 96px;
-      --gold: #d7ad63;
-      --gold-light: #ffe5ad;
-      --gold-dark: #68441f;
-      --text-main: #fff8ea;
-      --text-soft: rgba(255, 248, 234, 0.72);
-      --space-dark: #020106;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-    }
-
-    html {
-      background: var(--space-dark);
-    }
-
-    body {
-      overflow: hidden;
-      color: var(--text-main);
-      background: var(--space-dark);
-      font-family: Georgia, "Times New Roman", serif;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      color: inherit;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    button:focus-visible,
-    input:focus-visible {
-      outline: 3px solid var(--gold-light);
-      outline-offset: 4px;
-    }
-
-    /* =====================================================
-       GALAXY
-    ====================================================== */
-
-    .space {
-      position: fixed;
-      inset: 0;
-      z-index: -20;
-      overflow: hidden;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 12% 20%, rgba(150, 50, 174, 0.42), transparent 24%),
-        radial-gradient(circle at 86% 18%, rgba(28, 136, 172, 0.34), transparent 24%),
-        radial-gradient(circle at 16% 82%, rgba(64, 84, 193, 0.28), transparent 26%),
-        radial-gradient(circle at 84% 80%, rgba(157, 44, 155, 0.28), transparent 26%),
-        radial-gradient(circle at 50% 48%, rgba(94, 57, 142, 0.2), transparent 34%),
-        linear-gradient(180deg, #12041f 0%, #020106 100%);
-    }
-
-    .space::before,
-    .space::after {
-      content: "";
-      position: absolute;
-      inset: -18%;
-      background-repeat: repeat;
-      pointer-events: none;
-    }
-
-    .space::before {
-      opacity: 0.98;
-      background-image:
-        radial-gradient(circle, #ffffff 0 0.8px, transparent 1.3px),
-        radial-gradient(circle, #bdeaff 0 0.9px, transparent 1.4px),
-        radial-gradient(circle, #e2c7ff 0 0.9px, transparent 1.4px),
-        radial-gradient(circle, #ffe4a0 0 1px, transparent 1.6px),
-        radial-gradient(circle, #ffffff 0 1.3px, transparent 2.1px);
-      background-size:
-        38px 38px,
-        59px 59px,
-        84px 84px,
-        123px 123px,
-        196px 196px;
-      background-position:
-        0 0,
-        23px 31px,
-        49px 15px,
-        82px 65px,
-        121px 93px;
-      animation: starDrift 150s linear infinite;
-    }
-
-    .space::after {
-      opacity: 0.56;
-      filter: blur(26px);
-      background:
-        radial-gradient(ellipse at 10% 18%, rgba(255, 101, 221, 0.25), transparent 30%),
-        radial-gradient(ellipse at 90% 18%, rgba(26, 191, 224, 0.22), transparent 31%),
-        radial-gradient(ellipse at 15% 82%, rgba(73, 108, 255, 0.18), transparent 30%),
-        radial-gradient(ellipse at 88% 78%, rgba(219, 60, 208, 0.18), transparent 30%),
-        radial-gradient(ellipse at 50% 50%, rgba(126, 74, 178, 0.12), transparent 34%);
-      animation: nebulaBreathe 18s ease-in-out infinite alternate;
-    }
-
-    @keyframes starDrift {
-      to {
-        transform: translate(-240px, 165px);
-      }
-    }
-
-    @keyframes nebulaBreathe {
-      from {
-        transform: scale(1);
-        opacity: 0.46;
-      }
-
-      to {
-        transform: scale(1.08);
-        opacity: 0.68;
-      }
-    }
-
-    /* =====================================================
-       STAGE
-    ====================================================== */
-
-    .stage {
-      position: relative;
-      width: 100%;
-      height: calc(100vh - var(--player-height));
-      min-height: 620px;
-      overflow: hidden;
-    }
-
-    .world-count {
-      position: absolute;
-      z-index: 30;
-      top: 18px;
-      left: 24px;
-      margin: 0;
-      color: var(--gold-light);
-      font-size: 0.76rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(255, 229, 173, 0.35);
-    }
-
-    /* =====================================================
-       GLOWING ORBIT RINGS
-    ====================================================== */
-
-    .orbit-ring {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      z-index: 3;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .orbit-ring::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      border: 1px solid transparent;
-      border-top-color: rgba(255, 226, 164, 0.65);
-      border-right-color: rgba(255, 226, 164, 0.22);
-      filter: drop-shadow(0 0 7px rgba(255, 203, 111, 0.5));
-      animation: orbitGlowSweep 14s linear infinite;
-    }
-
-    .orbit-ring-outer {
-      width: min(72vw, 920px);
-      height: min(62vh, 580px);
-      border: 1px solid rgba(215, 173, 99, 0.22);
-      box-shadow:
-        0 0 12px rgba(215, 173, 99, 0.12),
-        inset 0 0 12px rgba(215, 173, 99, 0.06);
-    }
-
-    .orbit-ring-middle {
-      width: min(59vw, 750px);
-      height: min(50vh, 470px);
-      border: 1px dashed rgba(215, 173, 99, 0.17);
-      box-shadow:
-        0 0 10px rgba(215, 173, 99, 0.09),
-        inset 0 0 10px rgba(215, 173, 99, 0.05);
-    }
-
-    .orbit-ring-inner {
-      width: min(43vw, 560px);
-      height: min(36vh, 340px);
-      border: 1px dotted rgba(215, 173, 99, 0.16);
-      box-shadow:
-        0 0 9px rgba(215, 173, 99, 0.08),
-        inset 0 0 9px rgba(215, 173, 99, 0.04);
-    }
-
-    .orbit-ring-middle::before {
-      animation-direction: reverse;
-      animation-duration: 18s;
-    }
-
-    .orbit-ring-inner::before {
-      animation-duration: 22s;
-    }
-
-    @keyframes orbitGlowSweep {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* =====================================================
-       SMALLER CENTRAL MEDALLION
-    ====================================================== */
-
-    .center-medallion {
-      position: absolute;
-      z-index: 20;
-      left: 50%;
-      top: 50%;
-      width: clamp(150px, 14vw, 205px);
-      transform: translate(-50%, -50%);
-      text-align: center;
-      pointer-events: none;
-    }
-
-    .portrait-ring {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1;
-      border: 8px ridge #8c622f;
-      border-radius: 50%;
-      background:
-        conic-gradient(
-          from 0deg,
-          #3d2916,
-          #bd8745,
-          #4e3218,
-          #d7ad63,
-          #3d2916
-        );
-      box-shadow:
-        inset 0 0 0 5px rgba(255, 230, 170, 0.1),
-        inset 0 0 22px rgba(0, 0, 0, 0.7),
-        0 0 0 5px rgba(255, 230, 170, 0.04),
-        0 0 28px rgba(215, 173, 99, 0.28),
-        0 0 64px rgba(102, 61, 151, 0.22);
-    }
-
-    .portrait-ring::before {
-      content: "";
-      position: absolute;
-      inset: 8%;
-      z-index: 2;
-      border: 3px double var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .portrait-ring::after {
-      content: "";
-      position: absolute;
-      inset: -12%;
-      border: 1px dotted rgba(255, 227, 168, 0.38);
-      border-radius: 50%;
-      animation: medallionSpin 24s linear infinite;
-    }
-
-    .portrait-ring img {
-      position: absolute;
-      inset: 12%;
-      width: 76%;
-      height: 76%;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center;
-      background: #0c0710;
-    }
-
-    @keyframes medallionSpin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .center-gem {
-      position: absolute;
-      z-index: 5;
-      color: #e996ff;
-      font-size: 0.75rem;
-      text-shadow:
-        0 0 8px currentColor,
-        0 0 18px currentColor;
-    }
-
-    .gem-top {
-      left: 48%;
-      top: -5%;
-    }
-
-    .gem-right {
-      right: -4%;
-      top: 47%;
-    }
-
-    .gem-bottom {
-      left: 48%;
-      bottom: -5%;
-    }
-
-    .gem-left {
-      left: -4%;
-      top: 47%;
-    }
-
-    .center-title {
-      position: relative;
-      z-index: 6;
-      width: 145%;
-      margin: -4px 0 0 -22.5%;
-      padding: 10px 16px;
-      border: 2px solid var(--gold);
-      border-radius: 22px;
-      background:
-        linear-gradient(180deg, rgba(45, 27, 16, 0.98), rgba(8, 4, 5, 0.99));
-      box-shadow:
-        inset 0 0 0 3px rgba(255, 224, 160, 0.05),
-        0 8px 22px rgba(0, 0, 0, 0.62),
-        0 0 15px rgba(215, 173, 99, 0.14);
-    }
-
-    .center-title h1 {
-      margin: 0;
-      color: #f5d89f;
-      font-size: clamp(0.86rem, 1.12vw, 1.08rem);
-      line-height: 1.05;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .center-title p {
-      margin: 4px 0 0;
-      color: var(--text-soft);
-      font-size: 0.58rem;
-      font-style: italic;
-    }
-
-    /* =====================================================
-       ROTATING PORTALS
-    ====================================================== */
-
-    .orbit {
-      position: absolute;
-      z-index: 10;
-      left: 50%;
-      top: 50%;
-      width: min(72vw, 920px);
-      height: min(62vh, 580px);
-      transform: translate(-50%, -50%);
-      animation: orbitSpin 110s linear infinite;
-    }
-
-    @keyframes orbitSpin {
-      from {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
-    }
-
-    .slot {
-      --angle: 0deg;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: clamp(175px, 16vw, 235px);
-      transform:
-        translate(-50%, -50%)
-        rotate(var(--angle))
-        translateX(clamp(205px, 27vw, 370px))
-        rotate(calc(-1 * var(--angle)));
-    }
-
-    .slot:nth-child(1) {
-      --angle: -90deg;
-    }
-
-    .slot:nth-child(2) {
-      --angle: -18deg;
-    }
-
-    .slot:nth-child(3) {
-      --angle: 54deg;
-    }
-
-    .slot:nth-child(4) {
-      --angle: 126deg;
-    }
-
-    .slot:nth-child(5) {
-      --angle: 198deg;
-    }
-
-    .portal {
-      width: 100%;
-      padding: 0;
-      border: 0;
-      cursor: pointer;
-      background: transparent;
-      animation: counterSpin 110s linear infinite;
-    }
-
-    @keyframes counterSpin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(-360deg);
-      }
-    }
-
-    .portal-card {
-      --frame-main: #686170;
-      --frame-dark: #322d38;
-      --frame-glow: rgba(161, 132, 230, 0.3);
-      position: relative;
-      display: block;
-      width: 100%;
-      aspect-ratio: 0.82;
-      transition:
-        transform 250ms ease,
-        filter 250ms ease;
-    }
-
-    .portal:hover .portal-card,
-    .portal:focus-visible .portal-card {
-      transform: scale(1.07);
-      filter: brightness(1.1);
-    }
-
-    .portal-card::before {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      inset: 1% 3% 10%;
-      border: 14px ridge var(--frame-main);
-      border-radius: 49% 49% 17% 17% / 35% 35% 12% 12%;
-      background:
-        repeating-conic-gradient(
-          from 0deg,
-          var(--frame-main) 0 10deg,
-          var(--frame-dark) 10deg 21deg
-        );
-      box-shadow:
-        inset 0 0 0 5px rgba(255, 255, 255, 0.05),
-        0 0 25px var(--frame-glow);
-    }
-
-    .portal-card::after {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      inset: 8% 11% 17%;
-      border: 4px double rgba(255, 226, 165, 0.58);
-      border-radius: 47% 47% 10% 10% / 33% 33% 8% 8%;
-    }
-
-    .portal-image {
-      position: absolute;
-      z-index: 3;
-      left: 13%;
-      right: 13%;
-      top: 10%;
-      bottom: 22%;
-      overflow: hidden;
-      border-radius: 46% 46% 9% 9% / 33% 33% 7% 7%;
-      background: #08050a;
-      box-shadow:
-        inset 0 0 0 2px rgba(255, 255, 255, 0.04),
-        0 14px 30px rgba(0, 0, 0, 0.58);
-    }
-
-    .portal-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 420ms ease;
-    }
-
-    .portal:hover .portal-image img,
-    .portal:focus-visible .portal-image img {
-      transform: scale(1.05);
-    }
-
-    .portal-crown {
-      position: absolute;
-      z-index: 8;
-      left: 27%;
-      right: 27%;
-      top: -2%;
-      height: 13%;
-      background:
-        linear-gradient(180deg, #d4aa63, #65401f);
-      clip-path:
-        polygon(
-          0 100%,
-          0 48%,
-          15% 48%,
-          15% 5%,
-          31% 5%,
-          31% 48%,
-          46% 48%,
-          46% 0,
-          62% 0,
-          62% 48%,
-          78% 48%,
-          78% 5%,
-          94% 5%,
-          94% 48%,
-          100% 48%,
-          100% 100%
-        );
-      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    .portal-plaque {
-      position: absolute;
-      z-index: 9;
-      left: 1%;
-      right: 1%;
-      bottom: 0;
-      min-height: 24%;
-      display: grid;
-      align-content: center;
-      padding: 9px 13px;
-      border: 2px solid var(--gold);
-      border-radius: 22px;
-      text-align: center;
-      background:
-        linear-gradient(180deg, rgba(46, 28, 17, 0.99), rgba(8, 4, 5, 0.99));
-      box-shadow:
-        inset 0 0 0 3px rgba(255, 224, 160, 0.05),
-        0 8px 20px rgba(0, 0, 0, 0.62),
-        0 0 14px rgba(215, 173, 99, 0.11);
-    }
-
-    .portal-plaque strong {
-      color: #f7ddb0;
-      font-size: clamp(0.72rem, 1vw, 0.96rem);
-      line-height: 1.05;
-      letter-spacing: 0.015em;
-      text-transform: uppercase;
-    }
-
-    .portal-plaque small {
-      margin-top: 3px;
-      color: rgba(255, 239, 210, 0.66);
-      font-size: clamp(0.5rem, 0.64vw, 0.62rem);
-      line-height: 1.15;
-    }
-
-    .rabbit {
-      --frame-main: #66736c;
-      --frame-dark: #303832;
-      --frame-glow: rgba(104, 215, 206, 0.32);
-    }
-
-    .morph {
-      --frame-main: #a76931;
-      --frame-dark: #4c2a15;
-      --frame-glow: rgba(208, 141, 77, 0.34);
-    }
-
-    .kingdoms {
-      --frame-main: #6f6879;
-      --frame-dark: #393440;
-      --frame-glow: rgba(161, 132, 230, 0.32);
-    }
-
-    .earth {
-      --frame-main: #5b7144;
-      --frame-dark: #5f4025;
-      --frame-glow: rgba(121, 201, 125, 0.32);
-    }
-
-    .kaleidoscope {
-      --frame-main: #bb8741;
-      --frame-dark: #713178;
-      --frame-glow: rgba(237, 107, 208, 0.34);
-    }
-
-    /* =====================================================
-       WORLD PAGES
-    ====================================================== */
-
-    .world {
-      position: fixed;
-      z-index: 80;
-      inset: 0 0 var(--player-height);
-      display: none;
-      overflow-y: auto;
-      padding: 72px 5vw 60px;
-      background:
-        linear-gradient(rgba(5, 3, 8, 0.78), rgba(3, 2, 7, 0.96)),
-        radial-gradient(circle at 20% 15%, rgba(106, 61, 151, 0.34), transparent 35%),
-        #050309;
-    }
-
-    .world.active {
-      display: block;
-      animation: worldEnter 500ms ease both;
-    }
-
-    @keyframes worldEnter {
-      from {
-        opacity: 0;
-        transform: scale(1.03);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 24px;
-      padding: 10px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.23);
-      border-radius: 999px;
-      cursor: pointer;
-      background: rgba(8, 5, 13, 0.78);
-    }
-
-    .world-inner {
-      display: grid;
-      grid-template-columns: minmax(250px, 430px) minmax(280px, 1fr);
-      gap: clamp(30px, 5vw, 70px);
-      align-items: center;
-      width: min(1150px, 100%);
-      margin: 0 auto;
-    }
-
-    .world-inner img {
-      width: 100%;
-      border-radius: 24px;
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.58);
-    }
-
-    .world h2 {
-      margin: 0;
-      font-size: clamp(2.5rem, 6vw, 6rem);
-      line-height: 0.92;
-    }
-
-    .world p {
-      color: var(--text-soft);
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-
-    /* =====================================================
-       DECORATIVE PLAYER
-    ====================================================== */
-
-    .music-player {
-      position: fixed;
-      z-index: 100;
-      left: 10px;
-      right: 10px;
-      bottom: 7px;
-      height: calc(var(--player-height) - 12px);
-      display: grid;
-      grid-template-columns:
-        minmax(240px, 1.15fr)
-        auto
-        minmax(260px, 1fr);
-      align-items: center;
-      gap: 18px;
-      padding: 10px 18px;
-      border: 1px solid var(--gold-dark);
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(16, 12, 11, 0.98), rgba(4, 4, 6, 0.99));
-      box-shadow:
-        inset 0 0 0 2px rgba(215, 173, 99, 0.07),
-        inset 0 0 24px rgba(0, 0, 0, 0.48),
-        0 -8px 34px rgba(0, 0, 0, 0.48);
-    }
-
-    .music-player::before,
-    .music-player::after {
-      content: "❦";
-      position: absolute;
-      top: 50%;
-      color: var(--gold);
-      font-size: 1.15rem;
-      transform: translateY(-50%);
-      opacity: 0.72;
-    }
-
-    .music-player::before {
-      left: 10px;
-    }
-
-    .music-player::after {
-      right: 10px;
-      transform: translateY(-50%) scaleX(-1);
-    }
-
-    .track-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-      padding-left: 24px;
-    }
-
-    .track-info img {
-      width: 64px;
-      height: 64px;
-      object-fit: cover;
-      border: 1px solid var(--gold-dark);
-      border-radius: 10px;
-      box-shadow: 0 0 16px rgba(215, 173, 99, 0.12);
-    }
-
-    .track-text {
-      display: grid;
-      min-width: 0;
-    }
-
-    .track-text strong,
-    .track-text span {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .track-text strong {
-      color: #f4d69d;
-      font-size: 1rem;
-    }
-
-    .track-text span {
-      color: var(--text-soft);
-      font-size: 0.8rem;
-    }
-
-    .player-controls {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .player-controls button {
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      border: 1px solid rgba(215, 173, 99, 0.3);
-      border-radius: 50%;
-      cursor: pointer;
-      color: var(--gold-light);
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .player-controls .play-button {
-      width: 58px;
-      height: 58px;
-      border-color: var(--gold);
-      background:
-        radial-gradient(circle, rgba(215, 173, 99, 0.18), rgba(5, 7, 9, 0.93));
-      box-shadow:
-        0 0 0 4px rgba(215, 173, 99, 0.06),
-        0 0 18px rgba(104, 215, 206, 0.18);
-    }
-
-    .progress-area {
-      display: grid;
-      grid-template-columns: 40px 1fr 40px;
-      gap: 8px;
-      align-items: center;
-      padding-right: 24px;
-      font-size: 0.75rem;
-    }
-
-    .progress-area input {
-      width: 100%;
-      accent-color: #6ed6cf;
-    }
-
-    /* =====================================================
-       RESPONSIVE
-    ====================================================== */
-
-    @media (max-width: 900px) {
-      :root {
-        --player-height: 112px;
-      }
-
-      .stage {
-        min-height: 650px;
-      }
-
-      .slot {
-        width: clamp(135px, 18vw, 175px);
-        transform:
-          translate(-50%, -50%)
-          rotate(var(--angle))
-          translateX(clamp(175px, 34vw, 295px))
-          rotate(calc(-1 * var(--angle)));
-      }
-
-      .center-medallion {
-        width: clamp(140px, 23vw, 185px);
-      }
-
-      .music-player {
-        grid-template-columns: minmax(150px, 1fr) auto;
-        grid-template-areas:
-          "info controls"
-          "progress progress";
-        gap: 5px 12px;
-      }
-
-      .track-info {
-        grid-area: info;
-      }
-
-      .player-controls {
-        grid-area: controls;
-      }
-
-      .progress-area {
-        grid-area: progress;
-        padding: 0 20px;
-      }
-
-      .track-info img {
-        width: 48px;
-        height: 48px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      :root {
-        --player-height: 120px;
-      }
-
-      .stage {
-        min-height: 700px;
-      }
-
-      .world-count {
-        top: 11px;
-        left: 12px;
-        font-size: 0.62rem;
-      }
-
-      .center-medallion {
-        width: 31vw;
-      }
-
-      .center-title {
-        width: 150%;
-        margin-left: -25%;
-        padding: 8px 10px;
-      }
-
-      .center-title h1 {
-        font-size: 0.66rem;
-      }
-
-      .center-title p {
-        display: none;
-      }
-
-      .orbit,
-      .orbit-ring-outer {
-        width: 100vw;
-        height: 73vh;
-      }
-
-      .orbit-ring-middle,
-      .orbit-ring-inner {
-        display: none;
-      }
-
-      .slot {
-        width: 104px;
-        transform:
-          translate(-50%, -50%)
-          rotate(var(--angle))
-          translateX(38vw)
-          rotate(calc(-1 * var(--angle)));
-      }
-
-      .portal-plaque {
-        left: -4%;
-        right: -4%;
-        padding: 7px 8px;
-      }
-
-      .portal-plaque strong {
-        font-size: 0.58rem;
-      }
-
-      .portal-plaque small {
-        display: none;
-      }
-
-      .world-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .music-player {
-        left: 5px;
-        right: 5px;
-        bottom: 5px;
-        border-radius: 18px;
-        padding: 8px 11px;
-      }
-
-      .track-text span {
-        display: none;
-      }
-
-      .player-controls button {
-        width: 34px;
-        height: 34px;
-      }
-
-      .player-controls .play-button {
-        width: 44px;
-        height: 44px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+  <div class="space" aria-hidden="true">
+    <div class="star-layer star-layer-one"></div>
+    <div class="star-layer star-layer-two"></div>
+    <div class="star-layer star-layer-three"></div>
 
-  <div class="space" aria-hidden="true"></div>
+    <div class="nebula nebula-one"></div>
+    <div class="nebula nebula-two"></div>
+    <div class="nebula nebula-three"></div>
+  </div>
 
   <main id="stage" class="stage">
-
-    <p class="world-count">
-      ✦ Five Musical Worlds ✦
-    </p>
+    <p class="world-count">✦ Five Musical Worlds ✦</p>
 
     <div class="orbit-ring orbit-ring-outer" aria-hidden="true"></div>
     <div class="orbit-ring orbit-ring-middle" aria-hidden="true"></div>
     <div class="orbit-ring orbit-ring-inner" aria-hidden="true"></div>
 
     <section class="center-medallion" aria-label="Benny Langfur Music">
-
       <div class="portrait-ring">
-
         <span class="center-gem gem-top">◆</span>
         <span class="center-gem gem-right">◆</span>
         <span class="center-gem gem-bottom">◆</span>
         <span class="center-gem gem-left">◆</span>
 
-        <img
-          src="assets/benny.jpg"
-          alt="Benny Langfur"
-        >
-
+        <img src="assets/benny.jpg" alt="Benny Langfur">
       </div>
 
       <div class="center-title">
-
-        <h1>
-          Benny Langfur Music
-        </h1>
-
-        <p>
-          Choose a portal and enter the music
-        </p>
-
+        <h1>Benny Langfur Music</h1>
+        <p>Choose a portal and enter the music</p>
       </div>
-
     </section>
 
     <section class="orbit" aria-label="Musical worlds">
-
-      <div class="slot">
-
-        <button
-          class="portal"
-          type="button"
-          data-world="rabbit-world"
-          aria-label="Enter Rabbit Hole Orchestra"
-        >
-
+      <article class="slot">
+        <button class="portal" type="button" data-world="rabbit-world">
           <span class="portal-card rabbit">
-
             <span class="portal-crown"></span>
+            <span class="portal-detail portal-detail-left">✦</span>
+            <span class="portal-detail portal-detail-right">✦</span>
 
             <span class="portal-image">
-
-              <img
-                src="assets/covers/rabbithole.jpg"
-                alt="Rabbit Hole Orchestra"
-              >
-
+              <img src="assets/covers/rabbithole.jpg" alt="Rabbit Hole Orchestra">
             </span>
 
             <span class="portal-plaque">
-
-              <strong>
-                Rabbit Hole Orchestra
-              </strong>
-
-              <small>
-                Psychedelic orchestral journeys
-              </small>
-
+              <strong>Rabbit Hole Orchestra</strong>
+              <small>Psychedelic orchestral journeys</small>
             </span>
-
           </span>
-
         </button>
+      </article>
 
-      </div>
-
-      <div class="slot">
-
-        <button
-          class="portal"
-          type="button"
-          data-world="morph-world"
-          aria-label="Enter Morph Dwarf"
-        >
-
+      <article class="slot">
+        <button class="portal" type="button" data-world="morph-world">
           <span class="portal-card morph">
-
             <span class="portal-crown"></span>
+            <span class="portal-detail portal-detail-left">⚙</span>
+            <span class="portal-detail portal-detail-right">⚙</span>
 
             <span class="portal-image">
-
-              <img
-                src="assets/covers/morphdwarf.jpg"
-                alt="Morph Dwarf"
-              >
-
+              <img src="assets/covers/morphdwarf.jpg" alt="Morph Dwarf">
             </span>
 
             <span class="portal-plaque">
-
-              <strong>
-                Morph Dwarf
-              </strong>
-
-              <small>
-                Mechanical psychedelic transformations
-              </small>
-
+              <strong>Morph Dwarf</strong>
+              <small>Mechanical psychedelic transformations</small>
             </span>
-
           </span>
-
         </button>
+      </article>
 
-      </div>
-
-      <div class="slot">
-
-        <button
-          class="portal"
-          type="button"
-          data-world="kingdom-world"
-          aria-label="Enter Forgotten Kingdoms"
-        >
-
+      <article class="slot">
+        <button class="portal" type="button" data-world="kingdom-world">
           <span class="portal-card kingdoms">
-
             <span class="portal-crown"></span>
+            <span class="portal-detail portal-detail-left">♜</span>
+            <span class="portal-detail portal-detail-right">♜</span>
 
             <span class="portal-image">
-
-              <img
-                src="assets/covers/forgottenkingdoms.jpg"
-                alt="Forgotten Kingdoms"
-              >
-
+              <img src="assets/covers/forgottenkingdoms.jpg" alt="Forgotten Kingdoms">
             </span>
 
             <span class="portal-plaque">
-
-              <strong>
-                Forgotten Kingdoms
-              </strong>
-
-              <small>
-                Ancient worlds and lost legends
-              </small>
-
+              <strong>Forgotten Kingdoms</strong>
+              <small>Ancient worlds and lost legends</small>
             </span>
-
           </span>
-
         </button>
+      </article>
 
-      </div>
-
-      <div class="slot">
-
-        <button
-          class="portal"
-          type="button"
-          data-world="earth-world"
-          aria-label="Enter EarthJam"
-        >
-
+      <article class="slot">
+        <button class="portal" type="button" data-world="earth-world">
           <span class="portal-card earth">
-
             <span class="portal-crown"></span>
+            <span class="portal-detail portal-detail-left">❧</span>
+            <span class="portal-detail portal-detail-right">❧</span>
 
             <span class="portal-image">
-
-              <img
-                src="assets/covers/earthjam.jpg"
-                alt="EarthJam"
-              >
-
+              <img src="assets/covers/earthjam.jpg" alt="EarthJam">
             </span>
 
             <span class="portal-plaque">
-
-              <strong>
-                EarthJam
-              </strong>
-
-              <small>
-                Organic rhythm and global improvisation
-              </small>
-
+              <strong>EarthJam</strong>
+              <small>Organic rhythm and global improvisation</small>
             </span>
-
           </span>
-
         </button>
+      </article>
 
-      </div>
-
-      <div class="slot">
-
-        <button
-          class="portal"
-          type="button"
-          data-world="kaleidoscope-world"
-          aria-label="Enter Kaleidoscope Karavan"
-        >
-
+      <article class="slot">
+        <button class="portal" type="button" data-world="kaleidoscope-world">
           <span class="portal-card kaleidoscope">
-
             <span class="portal-crown"></span>
+            <span class="portal-detail portal-detail-left">◆</span>
+            <span class="portal-detail portal-detail-right">◆</span>
 
             <span class="portal-image">
-
-              <img
-                src="assets/covers/kaleidoscope.jpg"
-                alt="Kaleidoscope Karavan"
-              >
-
+              <img src="assets/covers/kaleidoscope.jpg" alt="Kaleidoscope Karavan">
             </span>
 
             <span class="portal-plaque">
-
-              <strong>
-                Kaleidoscope Karavan
-              </strong>
-
-              <small>
-                A travelling psychedelic carnival
-              </small>
-
+              <strong>Kaleidoscope Karavan</strong>
+              <small>A travelling psychedelic carnival</small>
             </span>
-
           </span>
-
         </button>
-
-      </div>
-
+      </article>
     </section>
-
   </main>
 
   <section id="rabbit-world" class="world">
-
-    <button class="back-button" type="button">
-      ← Back to the portals
-    </button>
-
+    <button class="back-button" type="button">← Back to the portals</button>
     <div class="world-inner">
-
-      <img
-        src="assets/covers/rabbithole.jpg"
-        alt="Rabbit Hole Orchestra"
-      >
-
+      <img src="assets/covers/rabbithole.jpg" alt="Rabbit Hole Orchestra">
       <div>
-
-        <h2>
-          Rabbit Hole Orchestra
-        </h2>
-
-        <p>
-          A psychedelic orchestral journey through improvisation,
-          mythology, cinematic landscapes and strange underground worlds.
-        </p>
-
+        <p class="world-eyebrow">Enter the Rabbit Hole</p>
+        <h2>Rabbit Hole Orchestra</h2>
+        <p>A psychedelic orchestral journey through improvisation, mythology, cinematic landscapes and strange underground worlds.</p>
       </div>
-
     </div>
-
   </section>
 
   <section id="morph-world" class="world">
-
-    <button class="back-button" type="button">
-      ← Back to the portals
-    </button>
-
+    <button class="back-button" type="button">← Back to the portals</button>
     <div class="world-inner">
-
-      <img
-        src="assets/covers/morphdwarf.jpg"
-        alt="Morph Dwarf"
-      >
-
+      <img src="assets/covers/morphdwarf.jpg" alt="Morph Dwarf">
       <div>
-
-        <h2>
-          Morph Dwarf
-        </h2>
-
-        <p>
-          Mechanical rhythms, distorted textures and shape-shifting
-          psychedelic music from a strange industrial universe.
-        </p>
-
+        <p class="world-eyebrow">Enter the Machine</p>
+        <h2>Morph Dwarf</h2>
+        <p>Mechanical rhythms, distorted textures and shape-shifting psychedelic music from a strange industrial universe.</p>
       </div>
-
     </div>
-
   </section>
 
   <section id="kingdom-world" class="world">
-
-    <button class="back-button" type="button">
-      ← Back to the portals
-    </button>
-
+    <button class="back-button" type="button">← Back to the portals</button>
     <div class="world-inner">
-
-      <img
-        src="assets/covers/forgottenkingdoms.jpg"
-        alt="Forgotten Kingdoms"
-      >
-
+      <img src="assets/covers/forgottenkingdoms.jpg" alt="Forgotten Kingdoms">
       <div>
-
-        <h2>
-          Forgotten Kingdoms
-        </h2>
-
-        <p>
-          Music inspired by ancient castles, legendary battles,
-          forgotten civilizations and distant mythological lands.
-        </p>
-
+        <p class="world-eyebrow">Awaken the Ancient World</p>
+        <h2>Forgotten Kingdoms</h2>
+        <p>Music inspired by ancient castles, legendary battles, forgotten civilizations and distant mythological lands.</p>
       </div>
-
     </div>
-
   </section>
 
   <section id="earth-world" class="world">
-
-    <button class="back-button" type="button">
-      ← Back to the portals
-    </button>
-
+    <button class="back-button" type="button">← Back to the portals</button>
     <div class="world-inner">
-
-      <img
-        src="assets/covers/earthjam.jpg"
-        alt="EarthJam"
-      >
-
+      <img src="assets/covers/earthjam.jpg" alt="EarthJam">
       <div>
-
-        <h2>
-          EarthJam
-        </h2>
-
-        <p>
-          Organic improvisation combining global instruments,
-          earthy rhythms, live energy and spontaneous musical connection.
-        </p>
-
+        <p class="world-eyebrow">Return to the Rhythm</p>
+        <h2>EarthJam</h2>
+        <p>Organic improvisation combining global instruments, earthy rhythms, live energy and spontaneous musical connection.</p>
       </div>
-
     </div>
-
   </section>
 
   <section id="kaleidoscope-world" class="world">
-
-    <button class="back-button" type="button">
-      ← Back to the portals
-    </button>
-
+    <button class="back-button" type="button">← Back to the portals</button>
     <div class="world-inner">
-
-      <img
-        src="assets/covers/kaleidoscope.jpg"
-        alt="Kaleidoscope Karavan"
-      >
-
+      <img src="assets/covers/kaleidoscope.jpg" alt="Kaleidoscope Karavan">
       <div>
-
-        <h2>
-          Kaleidoscope Karavan
-        </h2>
-
-        <p>
-          A colourful travelling world of psychedelic sound,
-          carnival energy, musical storytelling and shifting visions.
-        </p>
-
+        <p class="world-eyebrow">Follow the Travelling Lights</p>
+        <h2>Kaleidoscope Karavan</h2>
+        <p>A colourful travelling world of psychedelic sound, carnival energy, musical storytelling and shifting visions.</p>
       </div>
-
     </div>
-
   </section>
 
   <footer class="music-player">
-
     <div class="track-info">
-
-      <img
-        src="assets/covers/rabbithole.jpg"
-        alt="Current artwork"
-      >
+      <img src="assets/covers/rabbithole.jpg" alt="Current artwork">
 
       <div class="track-text">
-
-        <strong>
-          Choose a World
-        </strong>
-
-        <span>
-          Benny Langfur Music
-        </span>
-
+        <strong>Choose a World</strong>
+        <span>Benny Langfur Music</span>
       </div>
-
     </div>
 
     <div class="player-controls">
-
-      <button type="button" aria-label="Shuffle">
-        ⤨
-      </button>
-
-      <button type="button" aria-label="Previous">
-        ◀
-      </button>
-
-      <button class="play-button" type="button" aria-label="Play">
-        ▶
-      </button>
-
-      <button type="button" aria-label="Next">
-        ▶
-      </button>
-
-      <button type="button" aria-label="Repeat">
-        ↻
-      </button>
-
+      <button type="button" aria-label="Shuffle">⤨</button>
+      <button type="button" aria-label="Previous track">◀</button>
+      <button class="play-button" type="button" aria-label="Play or pause">▶</button>
+      <button type="button" aria-label="Next track">▶</button>
+      <button type="button" aria-label="Repeat">↻</button>
     </div>
 
     <div class="progress-area">
-
-      <span>
-        0:00
-      </span>
-
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-        aria-label="Track progress"
-      >
-
-      <span>
-        0:00
-      </span>
-
+      <span>0:00</span>
+      <input type="range" min="0" max="100" value="0" aria-label="Track progress">
+      <span>0:00</span>
     </div>
-
   </footer>
 
-  <script>
-    const stage = document.getElementById("stage");
-    const portals = document.querySelectorAll(".portal");
-    const worlds = document.querySelectorAll(".world");
-    const backButtons = document.querySelectorAll(".back-button");
-
-    function openWorld(worldId) {
-      const selectedWorld = document.getElementById(worldId);
-
-      if (!selectedWorld) {
-        return;
-      }
-
-      stage.style.display = "none";
-
-      worlds.forEach((world) => {
-        world.classList.remove("active");
-      });
-
-      selectedWorld.classList.add("active");
-      selectedWorld.scrollTop = 0;
-    }
-
-    function closeWorld() {
-      worlds.forEach((world) => {
-        world.classList.remove("active");
-      });
-
-      stage.style.display = "block";
-    }
-
-    portals.forEach((portal) => {
-      portal.addEventListener("click", () => {
-        openWorld(portal.dataset.world);
-      });
-    });
-
-    backButtons.forEach((button) => {
-      button.addEventListener("click", closeWorld);
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeWorld();
-      }
-    });
-  </script>
-
+  <script src="js/app.js/app.js"></script>
 </body>
 </html>
