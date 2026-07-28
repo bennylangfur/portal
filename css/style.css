@@ -248,7 +248,7 @@ input:focus-visible {
   transform:
     translate(-50%, -50%)
     rotate(var(--angle))
-    translateX(clamp(220px, 29vw, 430px))
+    translateX(clamp(165px, 23vw, 320px))
     rotate(calc(-1 * var(--angle)));
 }
 
