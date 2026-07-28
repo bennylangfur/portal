@@ -1112,3 +1112,207 @@ width:100%;
 height:100%;
 object-fit:cover;
 }
+/* ==========================================
+   Rabbit Hole hover magic
+========================================== */
+
+.rabbit-frame-art{
+    transition:
+        filter .35s ease,
+        transform .35s ease;
+}
+
+/* brighter blue runes */
+
+.rabbit-portal:hover .rabbit-frame-art{
+    filter:
+        drop-shadow(0 0 8px #2ca8ff)
+        drop-shadow(0 0 18px #2ca8ff)
+        brightness(1.18)
+        saturate(1.25);
+}
+
+/* warm lantern glow */
+
+.rabbit-portal:hover .rabbit-frame-art{
+    filter:
+        drop-shadow(0 0 8px #2ca8ff)
+        drop-shadow(0 0 18px #2ca8ff)
+        drop-shadow(0 0 12px rgba(255,190,80,.75))
+        brightness(1.18)
+        saturate(1.25);
+}
+
+/* dragonflies fly farther */
+
+.rabbit-portal:hover .dragonfly-one{
+    transform:translate(-18px,-12px) scale(1.15);
+}
+
+.rabbit-portal:hover .dragonfly-two{
+    transform:translate(22px,-18px) scale(1.1);
+}
+
+.rabbit-portal:hover .dragonfly-three{
+    transform:translate(-10px,22px) scale(1.1);
+}
+
+.dragonfly{
+    transition:transform .5s ease;
+}
+/* ==========================================
+   Rabbit Hole magical particles
+========================================== */
+
+.magic-particle{
+
+position:absolute;
+
+width:5px;
+height:5px;
+
+border-radius:50%;
+
+background:#6fd6ff;
+
+box-shadow:
+0 0 8px #6fd6ff,
+0 0 18px #35a8ff;
+
+opacity:.75;
+
+pointer-events:none;
+
+animation:magicRise 5s linear infinite;
+}
+
+.p1{
+left:22%;
+bottom:20%;
+animation-delay:0s;
+}
+
+.p2{
+left:38%;
+bottom:14%;
+animation-delay:.8s;
+}
+
+.p3{
+left:57%;
+bottom:22%;
+animation-delay:1.6s;
+}
+
+.p4{
+left:72%;
+bottom:17%;
+animation-delay:2.4s;
+}
+
+.p5{
+left:48%;
+bottom:30%;
+animation-delay:3.2s;
+}
+
+.p6{
+left:30%;
+bottom:26%;
+animation-delay:4s;
+}
+
+@keyframes magicRise{
+
+0%{
+
+transform:
+translateY(0)
+translateX(0)
+scale(.5);
+
+opacity:0;
+
+}
+
+15%{
+
+opacity:1;
+
+}
+
+50%{
+
+transform:
+translateY(-40px)
+translateX(-6px)
+scale(1);
+
+}
+
+100%{
+
+transform:
+translateY(-95px)
+translateX(12px)
+scale(.2);
+
+opacity:0;
+
+}
+
+}
+
+/* Hover = stronger magic */
+
+.rabbit-portal:hover .magic-particle{
+
+animation-duration:2.2s;
+
+filter:brightness(1.6);
+
+box-shadow:
+0 0 10px #8fe8ff,
+0 0 22px #48b7ff,
+0 0 38px #48b7ff;
+
+}
+/* ==========================================
+   Rabbit portal magical pulse
+========================================== */
+
+.rabbit-portal:hover .rabbit-frame-art{
+
+animation:rabbitPulse 1.8s ease-in-out infinite;
+
+}
+
+@keyframes rabbitPulse{
+
+0%{
+
+filter:
+drop-shadow(0 0 6px #1d86ff)
+brightness(1);
+
+}
+
+50%{
+
+filter:
+drop-shadow(0 0 16px #38b8ff)
+drop-shadow(0 0 32px #38b8ff)
+brightness(1.25)
+saturate(1.3);
+
+}
+
+100%{
+
+filter:
+drop-shadow(0 0 6px #1d86ff)
+brightness(1);
+
+}
+
+}
