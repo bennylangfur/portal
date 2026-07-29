@@ -1575,4 +1575,119 @@ brightness(1);
         border-radius:4px;
     }
 
+}/* ==========================================
+   ENCHANTED CUPS
+========================================== */
+
+.temple-cup{
+
+    position:absolute;
+
+    width:34px;
+
+    z-index:12;
+
+    pointer-events:none;
+
+}
+
+.temple-cup-left{
+
+    left:27%;
+    bottom:19%;
+
+}
+
+.temple-cup-right{
+
+    right:25%;
+    bottom:19%;
+
+}
+
+.temple-cup img{
+
+    position:absolute;
+
+    width:100%;
+
+    display:block;
+
+}
+
+.cup-open{
+
+    opacity:1;
+
+}
+
+.cup-wink{
+
+    opacity:0;
+
+}
+
+/* Left cup */
+
+.kaleidoscope-portal:hover .temple-cup-left .cup-open{
+
+    animation:leftCupOpen 8s infinite;
+
+}
+
+.kaleidoscope-portal:hover .temple-cup-left .cup-wink{
+
+    animation:leftCupWink 8s infinite;
+
+}
+
+/* Right cup */
+
+.kaleidoscope-portal:hover .temple-cup-right .cup-open{
+
+    animation:rightCupOpen 8s infinite;
+
+}
+
+.kaleidoscope-portal:hover .temple-cup-right .cup-wink{
+
+    animation:rightCupWink 8s infinite;
+
+}
+
+
+/* LEFT */
+
+@keyframes leftCupOpen{
+
+0%,18%,100%{opacity:1;filter:brightness(1);}
+20%,26%{opacity:0;filter:brightness(1.45);}
+28%,100%{opacity:1;filter:brightness(1);}
+
+}
+
+@keyframes leftCupWink{
+
+0%,18%,100%{opacity:0;}
+20%,26%{opacity:1;filter:brightness(1.7);}
+28%,100%{opacity:0;}
+
+}
+
+/* RIGHT */
+
+@keyframes rightCupOpen{
+
+0%,58%,100%{opacity:1;filter:brightness(1);}
+60%,66%{opacity:0;filter:brightness(1.45);}
+68%,100%{opacity:1;filter:brightness(1);}
+
+}
+
+@keyframes rightCupWink{
+
+0%,58%,100%{opacity:0;}
+60%,66%{opacity:1;filter:brightness(1.7);}
+68%,100%{opacity:0;}
+
 }
