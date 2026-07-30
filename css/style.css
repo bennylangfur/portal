@@ -235,7 +235,7 @@ input:focus-visible {
   z-index: 20;
   left: 50%;
   top: 50%;
-  width: clamp(145px, 13vw, 195px);
+  width: clamp(170px, 18vw, 250px);;
   transform: translate(-50%, -50%);
   text-align: center;
   pointer-events: none;
@@ -1674,7 +1674,7 @@ brightness(1);
 .benny-center{
   position: relative;
 
-  width: clamp(170px, 18vw, 250px);
+  width: 100%;
   aspect-ratio: 1;
 
   margin: auto;
