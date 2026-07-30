@@ -157,17 +157,30 @@ input:focus-visible {
   overflow: hidden;
 }
 
-.world-count {
-  position: absolute;
-  z-index: 30;
-  top: 18px;
-  left: 24px;
-  margin: 0;
-  color: var(--gold-light);
-  font-size: 0.76rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-shadow: 0 0 12px rgba(255, 229, 173, 0.35);
+.world-count{
+  position:absolute;
+  top:4%;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:30;
+
+  padding:18px 48px;
+
+  background:linear-gradient(
+    to bottom,
+    rgba(82,55,24,.92),
+    rgba(44,28,12,.92)
+  );
+
+  border:4px solid #b98a43;
+  border-radius:18px;
+
+  box-shadow:
+    0 0 25px rgba(255,190,80,.35),
+    inset 0 0 12px rgba(255,220,140,.18);
+
+  text-align:center;
+  color:#fff;
 }
 
 /* Glowing rings */
