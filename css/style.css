@@ -73,7 +73,7 @@ input:focus-visible {
   background-image:
     radial-gradient(circle, #fff 0 0.8px, transparent 1.3px),
     radial-gradient(circle, #bdeaff 0 0.9px, transparent 1.4px);
-  background-size: 38px 38px, 59px 59px;
+  background-size: 28px 28px, 42px 42px;
   background-position: 0 0, 23px 31px;
   animation: starDrift 150s linear infinite;
 }
@@ -83,7 +83,7 @@ input:focus-visible {
   background-image:
     radial-gradient(circle, #e2c7ff 0 0.9px, transparent 1.4px),
     radial-gradient(circle, #ffe4a0 0 1px, transparent 1.6px);
-  background-size: 84px 84px, 123px 123px;
+  background-size: 58px 58px, 90px 90px;
   background-position: 49px 15px, 82px 65px;
   animation: starDriftReverse 190s linear infinite;
 }
@@ -93,7 +93,7 @@ input:focus-visible {
   background-image:
     radial-gradient(circle, #fff 0 1.3px, transparent 2.1px),
     radial-gradient(circle, #9ddcff 0 1.8px, transparent 2.8px);
-  background-size: 196px 196px, 340px 340px;
+  background-size: 120px 120px, 220px 220px;
   background-position: 121px 93px, 210px 150px;
   animation: starDrift 240s linear infinite;
 }
