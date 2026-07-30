@@ -1711,6 +1711,9 @@ brightness(1);
 
   width: 46%;
   height: 46%;
+max-width: 115px;
+max-height: 115px;
+display: block; 
 
   transform: translate(-50%, -50%);
 
