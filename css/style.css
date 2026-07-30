@@ -1800,52 +1800,7 @@ display: block;
   100% {
     opacity: 0;
   }
-}.planet{
-  position:absolute;
-  border-radius:50%;
-  overflow:hidden;
-
-  box-shadow:
-    0 0 40px rgba(90,170,255,.35);
-
-  animation: planetFloat 45s ease-in-out infinite alternate;
 }
-
-.planet-one{
-  width:180px;
-  height:180px;
-
-  right:8%;
-  top:12%;
-
-  background:
-    radial-gradient(circle at 30% 30%,
-      #9bdcff,
-      #4b74c9 45%,
-      #1b234c 80%);
-
-  opacity:.85;
-}
-
-.planet-one::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-    radial-gradient(circle at 65% 35%,
-      transparent 55%,
-      rgba(255,255,255,.15) 60%,
-      transparent 66%);
-}
-
-@keyframes planetFloat{
-  from{
-    transform:translateY(0);
-  }
-  to{
-    transform:translateY(18px);
-  }
 .spaceship {
   position: absolute;
   top: 24%;
