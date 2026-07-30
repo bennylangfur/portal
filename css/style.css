@@ -1741,3 +1741,23 @@ display: block;
     width: 175px;
   }
 }
+.star-layer-four {
+  opacity: 0.35;
+
+  background-image:
+    radial-gradient(circle, #ffffff 0 0.5px, transparent 1px),
+    radial-gradient(circle, #bdeaff 0 0.4px, transparent 0.9px),
+    radial-gradient(circle, #ffe6a8 0 0.6px, transparent 1px);
+
+  background-size:
+    18px 18px,
+    27px 27px,
+    41px 41px;
+
+  background-position:
+    0 0,
+    11px 7px,
+    23px 15px;
+
+  animation: starDriftReverse 280s linear infinite;
+}
