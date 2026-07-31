@@ -2076,4 +2076,113 @@ display: block;
 @keyframes gearSpinRight{
   from{transform:rotate(360deg);}
   to{transform:rotate(0deg);}
+}.portal-card.morph{
+  animation: morphMachineBreath 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.portal-card.morph:hover{
+  transform: scale(1.05);
+  filter:
+    drop-shadow(0 0 10px rgba(130,255,70,.45))
+    drop-shadow(0 0 18px rgba(160,50,255,.45));
+}
+
+@keyframes morphMachineBreath{
+  0%,100%{
+    filter:
+      drop-shadow(0 0 4px rgba(130,255,70,.18))
+      drop-shadow(0 0 7px rgba(160,50,255,.18));
+  }
+
+  50%{
+    filter:
+      drop-shadow(0 0 9px rgba(130,255,70,.38))
+      drop-shadow(0 0 15px rgba(160,50,255,.35));
+  }
+}.portal-card.morph .portal-image img{
+  animation: morphPortal 8s ease-in-out infinite;
+}
+
+@keyframes morphPortal{
+
+  0%,100%{
+    transform:scale(1);
+    filter:
+      brightness(1)
+      contrast(1)
+      saturate(1);
+  }
+
+  25%{
+    transform:scale(1.008);
+    filter:
+      brightness(1.03)
+      contrast(1.06)
+      saturate(1.08)
+      hue-rotate(-3deg);
+  }
+
+  50%{
+    transform:scale(1.015);
+    filter:
+      brightness(1.07)
+      contrast(1.12)
+      saturate(1.15)
+      hue-rotate(3deg);
+  }
+
+  75%{
+    transform:scale(1.008);
+    filter:
+      brightness(1.03)
+      contrast(1.06)
+      saturate(1.08)
+      hue-rotate(-2deg);
+  }
+}.portal-card.morph::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:6;
+
+  background:
+    radial-gradient(circle at 30% 40%, rgba(170,80,255,.18), transparent 18%),
+    radial-gradient(circle at 70% 55%, rgba(120,255,120,.14), transparent 20%),
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.08), transparent 12%);
+
+  mix-blend-mode:screen;
+  opacity:.35;
+
+  animation:morphEnergy 9s ease-in-out infinite;
+}
+
+@keyframes morphEnergy{
+
+  0%{
+    transform:translate(-8px,-6px);
+    opacity:.20;
+  }
+
+  25%{
+    transform:translate(8px,-2px);
+    opacity:.45;
+  }
+
+  50%{
+    transform:translate(6px,8px);
+    opacity:.30;
+  }
+
+  75%{
+    transform:translate(-6px,4px);
+    opacity:.50;
+  }
+
+  100%{
+    transform:translate(-8px,-6px);
+    opacity:.20;
+  }
+
 }
