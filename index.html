@@ -128,21 +128,26 @@
 
       <article class="slot">
         <button class="portal" type="button" data-world="morph-world">
-          <span class="portal-card morph">
+          <span class="portal-card morph"
+      style="overflow:visible; background:transparent; border:none; box-shadow:none;">
             <span class="portal-crown"></span>
             <span class="portal-detail portal-detail-left">⚙</span>
             <span class="portal-detail portal-detail-right">⚙</span>
 
-            <span class="portal-image">
-
-    <img class="portal-cover"
-         src="assets/covers/morphdwarf.jpg"
-         alt="Morph Dwarf Album">
+            <span class="portal-image"
+      style="position:absolute; inset:-120px; overflow:visible; background:transparent; box-shadow:none; border-radius:0; z-index:50;">
 
     <img
+  class="portal-cover"
+  src="assets/covers/morphdwarf.jpg"
+  alt="Morph Dwarf Album"
+  style="position:absolute; left:50%; top:50%; width:52%; height:52%; transform:translate(-50%,-50%); object-fit:cover; border-radius:50%; z-index:1;">
+
+<img
   class="portal-frame"
   src="assets/frames/morph-portal.png"
-  alt="Morph Dwarf Portal">
+  alt="Morph Dwarf Portal"
+  style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; border-radius:0; z-index:2;">
 </span>
               
 
