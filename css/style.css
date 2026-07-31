@@ -2207,4 +2207,102 @@ display: block;
   object-fit:contain;
   z-index:2;
   pointer-events:none;
+}/* Whole portal slowly breathes */
+.kingdom-frame-art{
+    animation:
+        kingdomFloat 7s ease-in-out infinite,
+        kingdomGlow 5s ease-in-out infinite;
+    transform-origin:center;
+}
+
+@keyframes kingdomFloat{
+    0%,100%{
+        transform:translateY(0) scale(1);
+    }
+    50%{
+        transform:translateY(-4px) scale(1.015);
+    }
+}
+
+@keyframes kingdomGlow{
+    0%,100%{
+        filter:
+            drop-shadow(0 0 8px rgba(80,180,255,.25))
+            brightness(1);
+    }
+
+    50%{
+        filter:
+            drop-shadow(0 0 18px rgba(120,255,255,.55))
+            drop-shadow(0 0 35px rgba(120,120,255,.35))
+            brightness(1.08)
+            saturate(1.12);
+    }
+}
+
+/* Album artwork gently comes alive */
+.kingdom-cover{
+    animation:kingdomPortal 12s ease-in-out infinite;
+}
+
+@keyframes kingdomPortal{
+
+    0%,100%{
+        transform:translate(-50%,-50%) scale(1);
+        filter:brightness(1);
+    }
+
+    50%{
+        transform:translate(-50%,-50%) scale(1.03);
+        filter:
+            brightness(1.08)
+            saturate(1.15)
+            hue-rotate(6deg);
+    }
+}.kingdom-particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:5;
+}
+
+.kingdom-particles::before,
+.kingdom-particles::after{
+    content:"";
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#8efcff;
+
+    box-shadow:
+        0 0 8px #8efcff,
+        0 0 18px #5bbcff;
+
+    animation:kingdomSpirit 10s linear infinite;
+}
+
+.kingdom-particles::after{
+    animation-delay:5s;
+}
+
+@keyframes kingdomSpirit{
+
+    0%{
+        left:20%;
+        top:85%;
+        opacity:0;
+        transform:scale(.3);
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        left:75%;
+        top:10%;
+        opacity:0;
+        transform:scale(1.4);
+    }
 }
