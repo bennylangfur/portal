@@ -2059,4 +2059,76 @@ display: block;
 .portal-card.morph::after{
   content:none !important;
   display:none !important;
+}/* Gentle living-machine movement */
+.portal-card.morph{
+  animation: morphBreath 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.portal-card.morph .morph-art{
+  animation: morphArtPulse 8s ease-in-out infinite;
+}
+
+@keyframes morphBreath{
+  0%, 100%{
+    filter:
+      drop-shadow(0 0 5px rgba(120, 255, 80, 0.18))
+      drop-shadow(0 0 8px rgba(170, 60, 255, 0.18));
+  }
+
+  50%{
+    filter:
+      drop-shadow(0 0 11px rgba(120, 255, 80, 0.38))
+      drop-shadow(0 0 18px rgba(170, 60, 255, 0.42));
+  }
+}
+
+@keyframes morphArtPulse{
+  0%, 100%{
+    transform: translate(-50%, -50%) scale(1);
+    filter: brightness(1) saturate(1);
+  }
+
+  50%{
+    transform: translate(-50%, -50%) scale(1.025);
+    filter: brightness(1.08) saturate(1.15);
+  }
+}
+
+/* Larger glowing words over the existing plaque */
+.morph-void-title{
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  z-index: 10;
+
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+
+  color: #e7b5ff;
+  font-size: clamp(0.9rem, 1.5vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 9px #d86cff,
+    0 0 18px #8f24d6,
+    0 0 30px rgba(124, 20, 190, 0.85);
+
+  animation: voidTitleGlow 2.6s ease-in-out infinite;
+}
+
+@keyframes voidTitleGlow{
+  0%, 100%{
+    opacity: 0.82;
+    filter: brightness(0.95);
+  }
+
+  50%{
+    opacity: 1;
+    filter: brightness(1.35);
+  }
 }
