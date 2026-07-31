@@ -2211,4 +2211,34 @@ display: block;
     object-fit:contain;
     z-index:2;
     pointer-events:none;
+}.portal-card.morph .portal-image{
+  position:relative !important;
+  width:500px !important;
+  height:500px !important;
+}
+
+.portal-card.morph .portal-cover{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  width:58% !important;
+  height:58% !important;
+  transform:translate(-50%, -50%) !important;
+  object-fit:cover !important;
+  border-radius:50% !important;
+  z-index:10 !important;
+}
+
+.portal-card.morph .portal-frame{
+  display:block !important;
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  transform:none !important;
+  z-index:20 !important;
+  pointer-events:none !important;
 }
