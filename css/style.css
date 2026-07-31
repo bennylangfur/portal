@@ -2036,24 +2036,21 @@ display: block;
       rotate(-1deg)
       scale(0.62);
   }
-.morph-portal{
-  width:100%;
-  height:100%;
-  padding:0;
-  border:0;
-  background:transparent;
+.portal-card.morph{
   overflow:visible;
+  background:transparent;
+  border:none;
+  box-shadow:none;
 }
 
-.morph-art{
+.portal-card.morph .morph-art{
   position:absolute;
   left:50%;
   top:50%;
-  width:220%;
-  max-width:none;
+  width:150%;
   height:auto;
-  display:block;
+  max-width:none;
   transform:translate(-50%, -50%);
+  display:block;
   pointer-events:none;
-}
 }
