@@ -2036,4 +2036,44 @@ display: block;
       rotate(-1deg)
       scale(0.62);
   }
+}.portal-card.morph{
+  background:
+    radial-gradient(circle at center, rgba(88, 0, 120, .35), transparent 55%),
+    linear-gradient(145deg, #080808, #161016 55%, #050505);
+  
+  border-color: #4b324f;
+
+  box-shadow:
+    0 0 18px rgba(120, 0, 150, .45),
+    inset 0 0 22px rgba(0, 0, 0, .9);
+}.portal-card.morph .portal-image img{
+  filter:
+    brightness(.55)
+    contrast(1.35)
+    saturate(.8)
+    hue-rotate(285deg);
+}.portal-card.morph .portal-detail{
+  color:#5a5a5a;
+  text-shadow:
+    0 0 6px rgba(180,30,30,.45),
+    0 0 12px rgba(120,0,0,.35);
+  filter: drop-shadow(0 0 4px rgba(255,0,0,.25));
+}
+
+.portal-card.morph .portal-detail-left{
+  animation: gearSpinLeft 18s linear infinite;
+}
+
+.portal-card.morph .portal-detail-right{
+  animation: gearSpinRight 18s linear infinite;
+}
+
+@keyframes gearSpinLeft{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+@keyframes gearSpinRight{
+  from{transform:rotate(360deg);}
+  to{transform:rotate(0deg);}
 }
