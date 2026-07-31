@@ -2036,141 +2036,17 @@ display: block;
       rotate(-1deg)
       scale(0.62);
   }
-.portal-card.morph .portal-image{
-  position:relative;
-  display:block;
-  width:500px;
-  height:500px;
+.morph-portal{
+    background:none;
+    border:none;
+    padding:0;
+    overflow:visible;
 }
 
-.portal-card.morph .portal-cover{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:58%;
-  height:58%;
-  transform:translate(-50%, -50%);
-  object-fit:cover;
-  border-radius:50%;
-  z-index:1;
-}
-
-.portal-card.morph .portal-frame{
-  position:absolute;
-  inset:0;
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  z-index:2;
-  pointer-events:none;
-}.portal-card.morph .portal-image{
-  position:absolute;
-  left:-18%;
-  right:-18%;
-  top:-18%;
-  bottom:-18%;
-  overflow:visible;
-  border-radius:0;
-  background:transparent;
-  box-shadow:none;
-}
-
-.portal-card.morph .portal-cover{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:50%;
-  height:50%;
-  transform:translate(-50%, -50%);
-  object-fit:cover;
-  border-radius:50%;
-  z-index:1;
-}
-
-.portal-card.morph .portal-frame{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  border-radius:0;
-  z-index:2;
-  pointer-events:none;
-}.portal-card.morph .portal-image{
-  position:absolute !important;
-  left:-45% !important;
-  right:-45% !important;
-  top:-45% !important;
-  bottom:-45% !important;
-  width:auto !important;
-  height:auto !important;
-  overflow:visible !important;
-  border-radius:0 !important;
-  background:transparent !important;
-  box-shadow:none !important;
-}
-
-.portal-card.morph .portal-cover{
-  position:absolute !important;
-  left:50% !important;
-  top:50% !important;
-  width:34% !important;
-  height:34% !important;
-  transform:translate(-50%, -50%) !important;
-  object-fit:cover !important;
-  border-radius:50% !important;
-  z-index:1 !important;
-}
-
-.portal-card.morph .portal-frame{
-  position:absolute !important;
-  inset:0 !important;
-  width:100% !important;
-  height:100% !important;
-  object-fit:contain !important;
-  border-radius:0 !important;
-  z-index:2 !important;
-  pointer-events:none !important;
-}.morph-portal{
-  position:relative;
-  display:block;
-  width:100%;
-  height:100%;
-  padding:0;
-  border:0;
-  background:transparent;
-  overflow:visible;
-}
-
-.morph-wrap{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:220%;
-  aspect-ratio:1;
-  transform:translate(-50%, -50%);
-  overflow:visible;
-}
-
-.morph-cover{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:46%;
-  height:46%;
-  transform:translate(-50%, -50%);
-  object-fit:cover;
-  border-radius:50%;
-  z-index:1;
-}
-
-.morph-frame{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  z-index:2;
-  pointer-events:none;
+.morph-art{
+    width:240%;
+    max-width:none;
+    display:block;
+    transform:translate(-29%,-29%);
+    pointer-events:none;
 }
