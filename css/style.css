@@ -2180,4 +2180,31 @@ display: block;
     transform:translateY(-80px) scale(1.45);
     opacity:0;
   }
+}.kingdom-wrap{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio:2 / 3;
+  overflow:visible;
+}
+
+.kingdom-cover{
+  position:absolute;
+  left:50%;
+  top:49%;
+  width:55%;
+  height:62%;
+  transform:translate(-50%, -50%);
+  object-fit:cover;
+  z-index:1;
+}
+
+.kingdom-frame-art{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  z-index:2;
+  pointer-events:none;
 }
