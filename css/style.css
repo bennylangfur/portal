@@ -2107,7 +2107,7 @@ display: block;
   pointer-events: none;
 
   color: #e7b5ff;
-  font-size: clamp(0.9rem, 1.5vw, 1.35rem);
+  font-size: clamp(0.65rem, 1vw, 0.95rem);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
