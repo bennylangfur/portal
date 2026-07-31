@@ -2053,6 +2053,5 @@ display: block;
   transform:translate(-50%, -50%);
   display:block;
   pointer-events:none;
-}.portal-card.morph{
-  outline:10px solid red !important;
+}
 }
