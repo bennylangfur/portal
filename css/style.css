@@ -2055,3 +2055,8 @@ display: block;
   display:block;
   pointer-events:none;
 }
+.portal-card.morph::before,
+.portal-card.morph::after{
+  content:none !important;
+  display:none !important;
+}
