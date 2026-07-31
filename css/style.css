@@ -2036,6 +2036,7 @@ display: block;
       rotate(-1deg)
       scale(0.62);
   }
+}
 .portal-card.morph{
   overflow:visible;
   background:transparent;
@@ -2053,5 +2054,4 @@ display: block;
   transform:translate(-50%, -50%);
   display:block;
   pointer-events:none;
-}
 }
