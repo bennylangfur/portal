@@ -2164,7 +2164,7 @@ display: block;
     transform:translate(-8px,-6px);
     opacity:.20;
   }
-
+}
   25%{
     transform:translate(8px,-2px);
     opacity:.45;
