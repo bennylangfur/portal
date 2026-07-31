@@ -379,7 +379,7 @@ input:focus-visible {
 }
 
 .slot:nth-child(1) { --angle: -90deg; }
-.slot:nth-child(2) { --angle: -18deg; }
+.slot:nth-child(2) { --angle: -54deg; }
 .slot:nth-child(3) { --angle: 54deg; }
 .slot:nth-child(4) { --angle: 126deg; }
 .slot:nth-child(5) { --angle: 198deg; }
