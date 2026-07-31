@@ -2047,7 +2047,7 @@ display: block;
   position:absolute;
   left:50%;
   top:50%;
-  width:150%;
+  width:135%;
   height:auto;
   max-width:none;
   transform:translate(-50%, -50%);
