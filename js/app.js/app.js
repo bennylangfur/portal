@@ -2,7 +2,7 @@ const stage = document.getElementById("stage");
 const portals = document.querySelectorAll(".portal");
 const worlds = document.querySelectorAll(".world");
 const backButtons = document.querySelectorAll(".back-button");
-
+const kaleidoscopeAudio = document.getElementById("kaleidoscopeAudio");
 function openWorld(worldId) {
   const selectedWorld = document.getElementById(worldId);
 
@@ -18,10 +18,12 @@ function openWorld(worldId) {
 
   selectedWorld.classList.add("active");
   selectedWorld.scrollTop = 0;
-}
+}function closeWorlds() {
 
-function closeWorlds() {
-  worlds.forEach((world) => {
+  kaleidoscopeAudio.pause();
+  kaleidoscopeAudio.currentTime = 0;
+
+ worlds.forEach((world) => {
     world.classList.remove("active");
   });
 
@@ -30,6 +32,16 @@ function closeWorlds() {
 
 portals.forEach((portal) => {
   portal.addEventListener("click", () => {
+
+    // Stop music first
+    kaleidoscopeAudio.pause();
+    kaleidoscopeAudio.currentTime = 0;
+
+    // If Kaleidoscope portal was clicked, play music
+    if (portal.dataset.world === "kaleidoscope-world") {
+      kaleidoscopeAudio.play();
+    }
+
     openWorld(portal.dataset.world);
   });
 });
