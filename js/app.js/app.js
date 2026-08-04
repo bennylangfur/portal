@@ -62,19 +62,19 @@ document.addEventListener("keydown", (event) => {
 });
 const rabbitTracks = [
   {
-    title: "Rabbit Hole Track 1",
+    title: "The Hourglass",
     src: "assets/audio/hourglass.m4a"
   },
   {
-    title: "Rabbit Hole Track 2",
+    title: "Tunnels",
     src: "assets/audio/tunnels.m4a"
   },
   {
-    title: "Rabbit Hole Track 3",
+    title: "Creators of the World",
     src: "assets/audio/creators.m4a"
   },
   {
-    title: "Rabbit Hole Track 4",
+    title: "Levitating",
     src: "assets/audio/levitating.m4a"
   },
   
