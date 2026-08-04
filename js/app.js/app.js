@@ -18,6 +18,7 @@ function openWorld(worldId) {
 
   selectedWorld.classList.add("active");
   selectedWorld.scrollTop = 0;
+}
 function closeWorlds() {
   if (kaleidoscopeAudio) {
     kaleidoscopeAudio.pause();
