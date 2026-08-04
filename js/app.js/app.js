@@ -18,12 +18,13 @@ function openWorld(worldId) {
 
   selectedWorld.classList.add("active");
   selectedWorld.scrollTop = 0;
-}function closeWorlds() {
+function closeWorlds() {
+  if (kaleidoscopeAudio) {
+    kaleidoscopeAudio.pause();
+    kaleidoscopeAudio.currentTime = 0;
+  }
 
-  kaleidoscopeAudio.pause();
-  kaleidoscopeAudio.currentTime = 0;
-
- worlds.forEach((world) => {
+  worlds.forEach((world) => {
     world.classList.remove("active");
   });
 
@@ -32,20 +33,23 @@ function openWorld(worldId) {
 
 portals.forEach((portal) => {
   portal.addEventListener("click", () => {
+    if (kaleidoscopeAudio) {
+      kaleidoscopeAudio.pause();
+      kaleidoscopeAudio.currentTime = 0;
+    }
 
-    // Stop music first
-    kaleidoscopeAudio.pause();
-    kaleidoscopeAudio.currentTime = 0;
-
-    // If Kaleidoscope portal was clicked, play music
-    if (portal.dataset.world === "kaleidoscope-world") {
-      kaleidoscopeAudio.play();
+    if (
+      portal.dataset.world === "kaleidoscope-world" &&
+      kaleidoscopeAudio
+    ) {
+      kaleidoscopeAudio.play().catch((error) => {
+        console.log("Audio could not play:", error);
+      });
     }
 
     openWorld(portal.dataset.world);
   });
 });
-
 backButtons.forEach((button) => {
   button.addEventListener("click", closeWorlds);
 });
