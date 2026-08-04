@@ -285,30 +285,48 @@
     </div>
   </section>
 
-  <footer class="music-player">
-    <div class="track-info">
-      <img src="assets/covers/rabbithole.jpg" alt="Current artwork">
+ <footer class="music-player">
 
-      <div class="track-text">
-        <strong>Choose a World</strong>
-        <span>Benny Langfur Music</span>
-      </div>
-    </div>
+  <div class="track-info">
+    <img
+      id="playerArtwork"
+      src="assets/covers/rabbithole.jpg"
+      alt="Rabbit Hole Orchestra">
 
-    <div class="player-controls">
-      <button type="button" aria-label="Shuffle">⤨</button>
-      <button type="button" aria-label="Previous track">◀</button>
-      <button class="play-button" type="button" aria-label="Play or pause">▶</button>
-      <button type="button" aria-label="Next track">▶</button>
-      <button type="button" aria-label="Repeat">↻</button>
+    <div class="track-text">
+      <strong id="playerTitle">Rabbit Hole Orchestra</strong>
+      <span id="playerArtist">Benny Langfur Music</span>
     </div>
+  </div>
 
-    <div class="progress-area">
-      <span>0:00</span>
-      <input type="range" min="0" max="100" value="0" aria-label="Track progress">
-      <span>0:00</span>
-    </div>
-  </footer>
+  <div class="player-controls">
+    <button id="shuffleButton" type="button" aria-label="Choose random track">⤨</button>
+    <button id="previousButton" type="button" aria-label="Previous track">◀</button>
+    <button id="playButton" class="play-button" type="button" aria-label="Play or pause">▶</button>
+    <button id="nextButton" type="button" aria-label="Next track">▶</button>
+    <button id="repeatButton" type="button" aria-label="Repeat">↻</button>
+  </div>
+
+  <div class="progress-area">
+    <span id="currentTime">0:00</span>
+
+    <input
+      id="trackProgress"
+      type="range"
+      min="0"
+      max="100"
+      value="0"
+      aria-label="Track progress">
+
+    <span id="trackDuration">0:00</span>
+  </div>
+
+  <audio id="rabbitPlayer" preload="metadata"></audio>
+
+</footer>
+
+
+
 <audio id="kaleidoscopeAudio" preload="auto">
   <source src="assets/audio/kaleidoscope.m4a" type="audio/mp4">
 </audio>
