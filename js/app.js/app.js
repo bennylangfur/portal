@@ -394,3 +394,37 @@ currentTrackIndex =
   );
 
 loadTrack(currentTrackIndex, false);
+
+const portalTracks = document.querySelectorAll(".portal-track");
+const playerArtwork = document.getElementById("playerArtwork");
+const playerArtist = document.getElementById("playerArtist");
+
+portalTracks.forEach((trackButton) => {
+  trackButton.addEventListener("click", () => {
+
+    // Load selected music into the existing footer player
+    rabbitPlayer.src = trackButton.dataset.src;
+
+    // Change footer information
+    playerTitle.textContent = trackButton.dataset.title;
+    playerArtist.textContent = trackButton.dataset.artist;
+    playerArtwork.src = trackButton.dataset.artwork;
+
+    // Reset progress
+    trackProgress.value = 0;
+    currentTimeDisplay.textContent = "0:00";
+    durationDisplay.textContent = "0:00";
+
+    // Load and play
+    rabbitPlayer.load();
+
+    rabbitPlayer.play()
+      .then(() => {
+        playButton.textContent = "❚❚";
+      })
+      .catch((error) => {
+        console.log("Audio could not play:", error);
+      });
+
+  });
+});
