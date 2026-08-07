@@ -2373,3 +2373,12 @@ display: block;
   }
 
 }
+#kaleidoscope-world h1 {
+  font-family: "Almendra Display", serif;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #f6d88a;
+  text-shadow:
+    0 0 8px rgba(218, 164, 70, 0.35),
+    0 0 22px rgba(150, 75, 25, 0.22);
+}
