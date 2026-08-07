@@ -20,10 +20,7 @@ function openWorld(worldId) {
   selectedWorld.scrollTop = 0;
 }
 function closeWorlds() {
-  if (kaleidoscopeAudio) {
-    kaleidoscopeAudio.pause();
-    kaleidoscopeAudio.currentTime = 0;
-  }
+  
 
   worlds.forEach((world) => {
     world.classList.remove("active");
@@ -34,10 +31,9 @@ function closeWorlds() {
 
 portals.forEach((portal) => {
   portal.addEventListener("click", () => {
-    loadPortalPlayer(portal.dataset.world, true);
     openWorld(portal.dataset.world);
   });
-});
+})
 backButtons.forEach((button) => {
   button.addEventListener("click", closeWorlds);
 });
