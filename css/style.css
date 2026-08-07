@@ -2306,3 +2306,38 @@ display: block;
         transform:scale(1.4);
     }
 }
+/* PORTAL TRACK LIST */
+
+.portal-track-list {
+  margin-top: 28px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.portal-track {
+  display: block;
+  width: 100%;
+  padding: 18px 24px;
+  margin-bottom: 12px;
+
+  background: rgba(20, 12, 8, 0.9);
+  color: #f4d98b;
+
+  border: 1px solid #c99b45;
+  border-radius: 10px;
+
+  font-size: 22px;
+  font-weight: 600;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.portal-track:hover {
+  background: rgba(70, 45, 20, 0.95);
+  transform: translateX(5px);
+}
