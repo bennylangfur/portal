@@ -2,7 +2,7 @@ const stage = document.getElementById("stage");
 const portals = document.querySelectorAll(".portal");
 const worlds = document.querySelectorAll(".world");
 const backButtons = document.querySelectorAll(".back-button");
-const kaleidoscopeAudio = document.getElementById("kaleidoscopeAudio");
+
 function openWorld(worldId) {
   const selectedWorld = document.getElementById(worldId);
 
@@ -34,20 +34,7 @@ function closeWorlds() {
 
 portals.forEach((portal) => {
   portal.addEventListener("click", () => {
-    if (kaleidoscopeAudio) {
-      kaleidoscopeAudio.pause();
-      kaleidoscopeAudio.currentTime = 0;
-    }
-
-    if (
-      portal.dataset.world === "kaleidoscope-world" &&
-      kaleidoscopeAudio
-    ) {
-      kaleidoscopeAudio.play().catch((error) => {
-        console.log("Audio could not play:", error);
-      });
-    }
-
+    loadPortalPlayer(portal.dataset.world, true);
     openWorld(portal.dataset.world);
   });
 });
@@ -80,130 +67,334 @@ const rabbitTracks = [
   
 ];
 
-const rabbitPlayer = document.getElementById("rabbitPlayer");
+const player = document.getElementById("rabbitPlayer");
+const playerArtwork = document.getElementById("playerArtwork");
 const playerTitle = document.getElementById("playerTitle");
+const playerArtist = document.getElementById("playerArtist");
+
 const playButton = document.getElementById("playButton");
 const previousButton = document.getElementById("previousButton");
 const nextButton = document.getElementById("nextButton");
 const shuffleButton = document.getElementById("shuffleButton");
 const repeatButton = document.getElementById("repeatButton");
+
 const trackProgress = document.getElementById("trackProgress");
 const currentTimeDisplay = document.getElementById("currentTime");
 const durationDisplay = document.getElementById("trackDuration");
 
-let currentTrackIndex = Math.floor(Math.random() * rabbitTracks.length);
+
+const portalMusic = {
+
+  "rabbit-world": {
+    title: "Rabbit Hole Orchestra",
+    artist: "Benny Langfur Music",
+    artwork: "assets/covers/rabbithole.jpg",
+
+    tracks: [
+      {
+        title: "The Hourglass",
+        src: "assets/audio/hourglass.m4a"
+      },
+      {
+        title: "Tunnels",
+        src: "assets/audio/tunnels.m4a"
+      },
+      {
+        title: "Creators of the World",
+        src: "assets/audio/creators.m4a"
+      },
+      {
+        title: "Levitating",
+        src: "assets/audio/levitating.m4a"
+      }
+    ]
+  },
+
+
+  "morph-world": {
+    title: "Morph Dwarf",
+    artist: "Benny Langfur Music",
+    artwork: "assets/covers/morphdwarf.jpg",
+    tracks: []
+  },
+
+
+  "kingdom-world": {
+    title: "Forgotten Kingdoms",
+    artist: "Benny Langfur Music",
+    artwork: "assets/covers/forgottenkingdoms.jpg",
+    tracks: []
+  },
+
+
+  "earth-world": {
+    title: "EarthJam",
+    artist: "Benny Langfur Music",
+    artwork: "assets/covers/earthjam.jpg",
+    tracks: []
+  },
+
+
+  "kaleidoscope-world": {
+    title: "Kaleidoscope Karavan",
+    artist: "Benny Langfur Music",
+    artwork: "assets/covers/kaleidoscope.jpg",
+
+    tracks: [
+      {
+        title: "Kaleidoscope — March 23",
+        src: "https://pub-3ed5fb1107fe45bfb96a991226d8182b.r2.dev/Kaleidoscope%2C%20March%2023.mp3"
+      }
+    ]
+  }
+
+};
+
+
+let currentWorld = "rabbit-world";
+let currentTrackIndex = 0;
 let repeatEnabled = false;
 
-function loadRabbitTrack(index) {
+
+function loadPortalPlayer(worldId, autoplay = false) {
+
+  const portal = portalMusic[worldId];
+
+  if (!portal) {
+    return;
+  }
+
+  currentWorld = worldId;
+  currentTrackIndex = 0;
+
+  playerArtwork.src = portal.artwork;
+  playerArtwork.alt = portal.title;
+
+  playerTitle.textContent = portal.title;
+  playerArtist.textContent = portal.artist;
+
+  if (portal.tracks.length === 0) {
+
+    player.pause();
+    player.removeAttribute("src");
+    player.load();
+
+    playButton.textContent = "▶";
+    trackProgress.value = 0;
+    currentTimeDisplay.textContent = "0:00";
+    durationDisplay.textContent = "0:00";
+
+    return;
+  }
+
+  loadTrack(0, autoplay);
+}
+
+
+function loadTrack(index, autoplay = false) {
+
+  const portal = portalMusic[currentWorld];
+
+  if (!portal || portal.tracks.length === 0) {
+    return;
+  }
+
   currentTrackIndex =
-    (index + rabbitTracks.length) % rabbitTracks.length;
+    (index + portal.tracks.length) % portal.tracks.length;
 
-  const track = rabbitTracks[currentTrackIndex];
+  const track = portal.tracks[currentTrackIndex];
 
-  rabbitPlayer.src = track.src;
+  player.src = track.src;
+
   playerTitle.textContent = track.title;
+  playerArtist.textContent = portal.title;
+
+  playerArtwork.src = portal.artwork;
+  playerArtwork.alt = portal.title;
+
   trackProgress.value = 0;
   currentTimeDisplay.textContent = "0:00";
   durationDisplay.textContent = "0:00";
-  playButton.textContent = "▶";
 
-  rabbitPlayer.load();
-}
+  player.load();
 
-function formatTime(seconds) {
-  if (!Number.isFinite(seconds)) {
-    return "0:00";
+  if (autoplay) {
+    playCurrentTrack();
+  } else {
+    playButton.textContent = "▶";
   }
-
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = Math.floor(seconds % 60)
-    .toString()
-    .padStart(2, "0");
-
-  return `${minutes}:${remainingSeconds}`;
 }
 
-function playRabbitTrack() {
-  rabbitPlayer.play()
+
+function playCurrentTrack() {
+
+  player.play()
     .then(() => {
       playButton.textContent = "❚❚";
     })
     .catch((error) => {
-      console.log("Rabbit Hole audio could not play:", error);
+      console.log("Audio could not play:", error);
     });
+
 }
 
+
+function formatTime(seconds) {
+
+  if (!Number.isFinite(seconds)) {
+    return "0:00";
+  }
+
+  const hours = Math.floor(seconds / 3600);
+
+  const minutes = Math.floor(
+    (seconds % 3600) / 60
+  );
+
+  const remainingSeconds =
+    Math.floor(seconds % 60)
+      .toString()
+      .padStart(2, "0");
+
+  if (hours > 0) {
+    return `${hours}:${minutes
+      .toString()
+      .padStart(2, "0")}:${remainingSeconds}`;
+  }
+
+  return `${minutes}:${remainingSeconds}`;
+}
+
+
 playButton.addEventListener("click", () => {
-  if (rabbitPlayer.paused) {
-    playRabbitTrack();
+
+  if (!player.src) {
+    return;
+  }
+
+  if (player.paused) {
+    playCurrentTrack();
   } else {
-    rabbitPlayer.pause();
+    player.pause();
     playButton.textContent = "▶";
   }
+
 });
+
 
 nextButton.addEventListener("click", () => {
-  loadRabbitTrack(currentTrackIndex + 1);
-  playRabbitTrack();
-});
 
-previousButton.addEventListener("click", () => {
-  loadRabbitTrack(currentTrackIndex - 1);
-  playRabbitTrack();
-});
+  const portal = portalMusic[currentWorld];
 
-shuffleButton.addEventListener("click", () => {
-  let randomIndex = currentTrackIndex;
-
-  while (
-    rabbitTracks.length > 1 &&
-    randomIndex === currentTrackIndex
-  ) {
-    randomIndex = Math.floor(Math.random() * rabbitTracks.length);
+  if (!portal || portal.tracks.length === 0) {
+    return;
   }
 
-  loadRabbitTrack(randomIndex);
-  playRabbitTrack();
+  loadTrack(currentTrackIndex + 1, true);
+
 });
+
+
+previousButton.addEventListener("click", () => {
+
+  const portal = portalMusic[currentWorld];
+
+  if (!portal || portal.tracks.length === 0) {
+    return;
+  }
+
+  loadTrack(currentTrackIndex - 1, true);
+
+});
+
+
+shuffleButton.addEventListener("click", () => {
+
+  const portal = portalMusic[currentWorld];
+
+  if (!portal || portal.tracks.length === 0) {
+    return;
+  }
+
+  const randomIndex =
+    Math.floor(Math.random() * portal.tracks.length);
+
+  loadTrack(randomIndex, true);
+
+});
+
 
 repeatButton.addEventListener("click", () => {
+
   repeatEnabled = !repeatEnabled;
-  rabbitPlayer.loop = repeatEnabled;
-  repeatButton.classList.toggle("active", repeatEnabled);
+
+  player.loop = repeatEnabled;
+
+  repeatButton.classList.toggle(
+    "active",
+    repeatEnabled
+  );
+
 });
 
-rabbitPlayer.addEventListener("loadedmetadata", () => {
-  durationDisplay.textContent = formatTime(rabbitPlayer.duration);
+
+player.addEventListener("loadedmetadata", () => {
+
+  durationDisplay.textContent =
+    formatTime(player.duration);
+
 });
 
-rabbitPlayer.addEventListener("timeupdate", () => {
-  if (!rabbitPlayer.duration) {
+
+player.addEventListener("timeupdate", () => {
+
+  if (!player.duration) {
     return;
   }
 
   const percentage =
-    (rabbitPlayer.currentTime / rabbitPlayer.duration) * 100;
+    (player.currentTime / player.duration) * 100;
 
   trackProgress.value = percentage;
+
   currentTimeDisplay.textContent =
-    formatTime(rabbitPlayer.currentTime);
+    formatTime(player.currentTime);
+
 });
 
+
 trackProgress.addEventListener("input", () => {
-  if (!rabbitPlayer.duration) {
+
+  if (!player.duration) {
     return;
   }
 
-  rabbitPlayer.currentTime =
-    (trackProgress.value / 100) * rabbitPlayer.duration;
+  player.currentTime =
+    (trackProgress.value / 100) *
+    player.duration;
+
 });
 
-rabbitPlayer.addEventListener("ended", () => {
-  if (!repeatEnabled) {
-    loadRabbitTrack(currentTrackIndex + 1);
-    playRabbitTrack();
+
+player.addEventListener("ended", () => {
+
+  if (repeatEnabled) {
+    return;
   }
+
+  loadTrack(currentTrackIndex + 1, true);
+
 });
 
-/* Select a different random Rabbit Hole track on every refresh */
-loadRabbitTrack(currentTrackIndex);
+
+/* Start website with a random Rabbit Hole song loaded */
+
+currentWorld = "rabbit-world";
+
+currentTrackIndex =
+  Math.floor(
+    Math.random() *
+    portalMusic["rabbit-world"].tracks.length
+  );
+
+loadTrack(currentTrackIndex, false);
