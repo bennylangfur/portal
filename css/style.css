@@ -2341,3 +2341,35 @@ display: block;
   background: rgba(70, 45, 20, 0.95);
   transform: translateX(5px);
 }
+/* MOBILE PORTAL TRACKS */
+
+@media (max-width: 768px) {
+
+  .portal-track-list {
+    width: 100%;
+    max-width: none;
+    margin-top: 24px;
+  }
+
+  .portal-track {
+    display: block;
+    width: 100%;
+
+    padding: 18px 16px;
+
+    background: rgba(20, 12, 8, 0.95) !important;
+    color: #f4d98b !important;
+
+    border: 1px solid #c99b45 !important;
+    border-radius: 10px;
+
+    font-size: 20px !important;
+    font-weight: 600;
+
+    text-align: left;
+    line-height: 1.35;
+
+    cursor: pointer;
+  }
+
+}
