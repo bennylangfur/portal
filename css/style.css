@@ -2387,7 +2387,7 @@ display: block;
 #kaleidoscope-world .kk-title {
   font-family: "Eagle Lake", serif;
 
-  font-size: clamp(64px, 8vw, 145px);
+  font-size: clamp(48px, 5vw, 82px);
   line-height: 0.95;
   font-weight: 400;
   letter-spacing: -2px;
@@ -2478,7 +2478,7 @@ display: block;
 @media (max-width: 768px) {
 
   #kaleidoscope-world .kk-title {
-    font-size: clamp(54px, 15vw, 92px);
+    font-size: clamp(42px, 10vw, 64px);
     line-height: 1;
     letter-spacing: -1px;
   }
