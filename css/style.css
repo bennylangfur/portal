@@ -2382,3 +2382,105 @@ display: block;
     0 0 8px rgba(218, 164, 70, 0.35),
     0 0 22px rgba(150, 75, 25, 0.22);
 }
+/* KALEIDOSCOPE ORNATE TITLE */
+
+#kaleidoscope-world .kk-title {
+  font-family: "Eagle Lake", serif;
+
+  font-size: clamp(64px, 8vw, 145px);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -2px;
+
+  margin: 18px 0 35px;
+
+  background: linear-gradient(
+    180deg,
+    #fff2ac 0%,
+    #f3ca61 30%,
+    #c88722 65%,
+    #ffe39a 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter:
+    drop-shadow(0 2px 0 #6c3814)
+    drop-shadow(0 0 10px rgba(218, 153, 48, 0.35));
+}
+
+
+/* THE EYE REPLACING SECOND O */
+
+.kk-title-eye {
+  display: inline-flex;
+  position: relative;
+
+  width: 0.78em;
+  height: 0.48em;
+
+  margin: 0 0.03em;
+
+  vertical-align: 0.03em;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 0.055em solid #e5b94f;
+
+  border-radius:
+    70% 15%
+    70% 15%;
+
+  transform: rotate(45deg);
+
+  background:
+    radial-gradient(
+      circle,
+      #120910 0%,
+      #331236 18%,
+      #8f3b91 32%,
+      #d3a73b 48%,
+      #1a071d 51%,
+      #080408 72%
+    );
+
+  box-shadow:
+    0 0 8px rgba(255, 196, 71, 0.7),
+    0 0 20px rgba(150, 50, 170, 0.35);
+}
+
+
+/* iris */
+
+.kk-iris {
+  width: 0.19em;
+  height: 0.19em;
+
+  border-radius: 50%;
+
+  background: #060006;
+
+  border: 0.035em solid #f4c95d;
+
+  transform: rotate(-45deg);
+
+  box-shadow:
+    0 0 0 0.035em #70298b,
+    0 0 10px #d35fff;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  #kaleidoscope-world .kk-title {
+    font-size: clamp(54px, 15vw, 92px);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+}
